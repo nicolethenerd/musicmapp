@@ -18,7 +18,9 @@
 	    "https://raw.github.com",
 	    "http://tile.cloudmade.com",
 	    "http://*.tile.cloudmade.com",
-	    "https://gist.github.com/"
+	    "https://gist.github.com/",
+        "http://s3.amazonaws.com",
+        "http://api.geonames.org/"
 	],
 	"SupportedLanguages": [
 		"en"

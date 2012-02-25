@@ -28,19 +28,27 @@
             .zoom(2)
             .add(po.interact())
             .add(po.hash());
-        
-           userMap.add(po.image()
-                .url(po.url("http://{S}tile.cloudmade.com"
-                + "/5814d279db61404b9e52115b06b9e7b3"
-                + "/52527/256/{Z}/{X}/{Y}.png")
-                .hosts(["a.", "b.", "c.", ""])));
+                    
+        userMap.add(po.image()
+    .url(po.url("http://{S}tile.cloudmade.com"
+    + "/1a1b06b230af4efdbb989ea99e9841af" // http://cloudmade.com/register
+    + "/999/256/{Z}/{X}/{Y}.png")
+    .hosts(["a.", "b.", "c.", ""])));
 
         userMap.add(po.compass().pan("none"));
         
         function display_country_name(e) {
             x_y = userMap.mouse(e)
             lat_lon = userMap.pointLocation(x_y)
-            document.getElementById("country_name").innerHTML = lat_lon.lat + "," + lat_lon.lon
+//           country_name = lat_lon.lat + "," + lat_lon.lon
+            country_name = fetch_country_name(lat_lon.lat, lat_lon.lon)
+            
+            document.getElementById("country_name").innerHTML = country_name
+        };
+        
+        function fetch_country_name(lat, lon) {
+            return lat_lon.lat + "," + lat_lon.lon;
+                
         }
         </script>
      <div id="player"></div>
