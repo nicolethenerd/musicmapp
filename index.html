@@ -20,7 +20,7 @@
             #header_text {padding: 10px; }
             
         </style>
-        <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+        <link rel="stylesheet" href="sp://radiomap/css/leaflet.css" />
         
         <script src="sp://radiomap/js/leaflet.js"></script>
         <script src="sp://radiomap/js/jquery.min.js"></script>
@@ -39,12 +39,21 @@
     
     <script>
     
+    var selected_country = "United States"
+    
     function highlight() {
         $('path').click(function () {
             $('path').css('stroke','blue')
+            $('path').css('fill','blue')
             $(this).css('stroke','red')
+            $(this).css('fill','red')
         });
-}
+        
+        $('.leaflet-popup-content').change(function () {
+            console.log('change')
+            document.getElementById("country_name").innerHTML = $('.leaflet-popup-content').text()
+        });
+    }
     </script>
     </body>
 </html>

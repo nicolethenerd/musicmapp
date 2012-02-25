@@ -25,5 +25,3 @@ $.getJSON(
     });
 
 userMap.addLayer(geojsonLayer);
-
-userMap.addLayer(selectedLayer);
