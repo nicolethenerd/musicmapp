@@ -22,7 +22,8 @@
         "http://s3.amazonaws.com",
         "http://api.geonames.org/",
         "ws.geonames.org",
-        "http://code.leafletjs.com"
+        "http://code.leafletjs.com",
+        "http://ws.audioscrobbler.com"
 	],
 	"SupportedLanguages": [
 		"en"
