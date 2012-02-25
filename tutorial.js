@@ -6,20 +6,33 @@ var views = sp.require('sp://import/scripts/api/views');
 exports.init = init;
 
 function init() {
-    console.log("woohoo");
-    var pl = new models.Playlist();
-    var tracks = models.library.tracks;
-    
-    for (var i=0;i<20;i++){
-        var track = models.Track.fromURI(tracks[i].data.uri);
-        pl.add(track);
-    }
+    console.log("Initializing playlist");
 
     var player = new views.Player();
-    player.track = pl.get(0);
-    player.context = pl;
-    player.image = null;   
+    var pl = new models.Playlist();
+    var tl = new models.Toplist();
 
-    var plView = new views.List(pl);
-    $('#player').append(plView.node);
+    tl.toplistType = models.TOPLISTTYPE.REGION;
+    tl.matchType = models.TOPLISTMATCHES.TRACKS;
+    tl.region = "US";
+    tl.observe(models.EVENT.CHANGE, function(){
+       console.log("Loaded " + tl.results.length +  " tracks");
+       
+       for(var i=0; i<20; i++){   
+           pl.add(tl.results[i]);
+       }
+       
+       player.track = pl.get(0);
+       player.context = pl;
+       $('#player').append(player.node);
+
+       var plView = new views.List(pl);
+       $('#player').append(plView.node);
+    });
+
+    tl.observe(models.EVENT.LOAD_ERROR, function(){
+       console.log("Failed to load toplist");
+    });
+
+    tl.run();
 }   
