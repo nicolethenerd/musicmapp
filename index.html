@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html>
-<head>
-    <meta charset="utf-8">
-    <title>My First App</title>
-    <link rel="stylesheet" href="sp://import/css/adam.css">
-    <link rel="stylesheet" href="tutorial.css">
-    <style>
-        @import url('sp://import/css/api.css');
-        @import url('sp://import/css/eve.css');
-        @import url('sp://import/css/list.css');
-        @import url('sp://import/css/player.css');
-     </style>
-     <script src="sp://radiomap/js/jquery.min.js"></script>
+    <head>
 
-</head>
-<body onload="sp = getSpotifyApi(1); tutorial = sp.require('tutorial'); tutorial.init();">
-<h1 id="header">Hello, world world world!</h1>
-<div id="player"></div>
-</body>
+        <style>
+            @import url('sp://import/css/api.css');
+            @import url('sp://import/css/list.css');
+            @import url('sp://import/css/player.css');
+            @import url('sp://import/css/eve.css');
+            #map {height:500px;}
+        </style>
+        <script src="sp://radiomap/js/jquery.min.js"></script>
+    </head>
+    <body onload="sp = getSpotifyApi(1); tutorial = sp.require('tutorial'); tutorial.init();">
+       <div id="wrapper">
+            <div id="map" onclick=display_country_name(event)></div>
+            <div id="country_name">Country</div>
+        </div><!-- /wrapper -->
+        <script src="https://raw.github.com/simplegeo/polymaps/master/polymaps.js"></script>
+        <script type="text/javascript">
+        var po = org.polymaps;
+        var map_div = document.getElementById('map');
+        var map = po.map()
+            .container(document.getElementById("map")
+            .appendChild(po.svg("svg")))
+            .center({lat: 40, lon: 0})
+            .zoomRange([1, 4])
+            .zoom(2)
+            .add(po.interact())
+            .add(po.hash());
+        
+            map.add(po.image()
+                .url(po.url("http://{S}tile.cloudmade.com"
+                + "/5814d279db61404b9e52115b06b9e7b3"
+                + "/52527/256/{Z}/{X}/{Y}.png")
+                .hosts(["a.", "b.", "c.", ""])));
+
+        map.add(po.compass().pan("none"));
+        
+        function display_country_name(e) {
+            x_y = map.mouse(e)
+            lat_lon = map.pointLocation(x_y)
+            document.getElementById("country_name").innerHTML = lat_lon.lat + "," + lat_lon.lon
+        }
+        </script>
+     <div id="player"></div>
+    </body>
 </html>
-
