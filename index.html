@@ -5,12 +5,13 @@
         <style>
             @import url('sp://import/css/eve.css');
             @import url('sp://spotify-apps-tutorial/css/main.css');
-            #map {width:400px;height:400px;border:1px solid #333;}
+            #map {height:500px;}
         </style>
     </head>
     <body>
         <div id="wrapper">
-            <div id="map"></div>
+            <div id="map" onclick=display_country_name(event)></div>
+            <div id="country_name">Country</div>
         </div><!-- /wrapper -->
         <script src="https://raw.github.com/simplegeo/polymaps/master/polymaps.js"></script>
         <script type="text/javascript">
@@ -19,8 +20,12 @@
         var map = po.map()
             .container(document.getElementById("map")
             .appendChild(po.svg("svg")))
+            .center({lat: 40, lon: 0})
+            .zoomRange([1, 4])
+            .zoom(2)
             .add(po.interact())
             .add(po.hash());
+
         
             map.add(po.image()
                 .url(po.url("http://{S}tile.cloudmade.com"
@@ -29,6 +34,12 @@
                 .hosts(["a.", "b.", "c.", ""])));
 
         map.add(po.compass().pan("none"));
+        
+        function display_country_name(e) {
+            x_y = map.mouse(e)
+            lat_lon = map.pointLocation(x_y)
+            document.getElementById("country_name").innerHTML = lat_lon.lat + "," + lat_lon.lon
+        }
         </script>
     </body>
 </html>
