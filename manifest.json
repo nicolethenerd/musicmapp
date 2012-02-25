@@ -21,8 +21,7 @@
 	    "https://gist.github.com/",
         "http://s3.amazonaws.com",
         "http://api.geonames.org/",
-        "ws.geonames.org",
-        "http://code.leafletjs.com"
+        "ws.geonames.org"
 	],
 	"SupportedLanguages": [
 		"en"

@@ -20,9 +20,8 @@
             #header_text {padding: 10px; }
             
         </style>
-        <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.css" />
         
-        <script src="sp://radiomap/js/leaflet.js"></script>
+        <script src="sp://radiomap/leaflet/leaflet.js"></script>
         <script src="sp://radiomap/js/jquery.min.js"></script>
     </head>
     <body onload="sp = getSpotifyApi(1); tutorial = sp.require('tutorial'); tutorial.init(); highlight();">
@@ -46,7 +45,7 @@
             $(this).css('stroke','red')
             $(this).css('fill','red')
         });
-}
+    }
     </script>
     </body>
 </html>
