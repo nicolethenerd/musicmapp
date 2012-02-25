@@ -1,4 +1,4 @@
-var userMap = new L.Map('mapdiv');
+var userMap = new L.Map('mapdiv', {maxZoom: 4, minZoom: 1});
 var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/090dcb454ecf48dab1e1765affbbb4ee/4/256/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; OpenStreetMap contributors, CC-BY-SA, Imagery © CloudMade',
     maxZoom: 18

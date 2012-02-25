@@ -20,14 +20,13 @@
             #header_text {padding: 10px; }
             
         </style>
-        <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.css" />
         
-        <script src="sp://radiomap/js/leaflet.js"></script>
+        <script src="sp://radiomap/leaflet/leaflet.js"></script>
         <script src="sp://radiomap/js/jquery.min.js"></script>
         <script src="sp://radiomap/js/lastfm.js"></script>
 
     </head>
-    <body onload="sp = getSpotifyApi(1); tutorial = sp.require('tutorial'); tutorial.init(); highlight();">
+    <body onload="sp = getSpotifyApi(1); tutorial = sp.require('tutorial'); tutorial.init(); setup_highlights();">
     
     <div id="branded_area"><div id="app_name">AppName</div></div>
     
@@ -43,12 +42,14 @@
  
     <script>
     
-    function highlight() {
+    function setup_highlights() {
         $('path').click(function () {
             $('path').css('stroke','blue')
-            $(this).css('stroke','red')
+            $('path').css('fill','blue')
+            $(this).css('stroke','lime')
+            $(this).css('fill','lime')
         });
-}
+    }
     </script>
     </body>
 </html>

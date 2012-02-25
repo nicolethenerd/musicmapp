@@ -24,6 +24,7 @@
         "ws.geonames.org",
         "http://code.leafletjs.com",
         "http://ws.audioscrobbler.com"
+        "ws.geonames.org"
 	],
 	"SupportedLanguages": [
 		"en"
