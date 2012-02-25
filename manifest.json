@@ -20,7 +20,9 @@
 	    "http://*.tile.cloudmade.com",
 	    "https://gist.github.com/",
         "http://s3.amazonaws.com",
-        "http://api.geonames.org/"
+        "http://api.geonames.org/",
+        "http://fonts.googleapis.com/",
+        "http://themes.googleusercontent.com"
 	],
 	"SupportedLanguages": [
 		"en"
