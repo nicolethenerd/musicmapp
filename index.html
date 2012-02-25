@@ -17,70 +17,23 @@
             background: -webkit-linear-gradient(top, #010f18 0%,#062a40 100%);}
             #app_name {padding-top:5px; color: white;}
                        
-            #header_text {padding: 10px; shadow: none;}
+            #header_text {padding: 10px; }
         </style>
+        <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+        
+        <script src="sp://radiomap/js/leaflet.js"></script>
         <script src="sp://radiomap/js/jquery.min.js"></script>
     </head>
     <body onload="sp = getSpotifyApi(1); tutorial = sp.require('tutorial'); tutorial.init();">
     
     <div id="branded_area"><div id="app_name">AppName</div></div>
     
-       <div id="wrapper">
-            <div id="mapdiv" onclick=display_country_name(event)></div>
+    <div id="wrapper">
+            <div id="mapdiv"></div>
             <div id="header_text">Top Tracks in <span id="country_name">Country</span>:</div>
-        </div><!-- /wrapper -->
-    <script src="https://raw.github.com/simplegeo/polymaps/master/polymaps.js"></script>
-    <script type="text/javascript">
-        var po = org.polymaps;
-        var map_div = document.getElementById('mapdiv');
-        var userMap = po.map()
-            .container(document.getElementById("mapdiv")
-            .appendChild(po.svg("svg")))
-            .center({lat: 40, lon: 0})
-            .zoomRange([1, 4])
-            .zoom(2)
-            .add(po.interact())
-            .add(po.hash());
-                    
-        userMap.add(po.image()
-    .url(po.url("http://{S}tile.cloudmade.com"
-    + "/1a1b06b230af4efdbb989ea99e9841af" // http://cloudmade.com/register
-    + "/999/256/{Z}/{X}/{Y}.png")
-    .hosts(["a.", "b.", "c.", ""])));
-
-        userMap.add(po.compass().pan("none"));
-        
-        function display_country_name(e) {
-            x_y = userMap.mouse(e)
-            lat_lon = userMap.pointLocation(x_y)
-//           country_name = lat_lon.lat + "," + lat_lon.lon
-            fetch_country_name(lat_lon.lat, lat_lon.lon)
-            
-            //document.getElementById("country_name").innerHTML = country_name
-        };
-        
-        function fetch_country_name(lat, lon) {
-            //return lat_lon.lat + "," + lat_lon.lon;
-            var req = new XMLHttpRequest();
-            req.open("GET", "http://api.geonames.org/countryCode?lat=47.03&lng=10.2&username=demo&type=JSON", true);
-
-            req.onreadystatechange = function() {
-
-            console.log(req.status);
-            console.log(req.responseText);
-
-            if (req.readyState == 4) {
-                if (req.status != 404) {
-                    console.log("Search complete!");
-                    console.log(req.responseText);
-                    document.getElementById("country_name").innerHTML = req.responseText
-            }
-        }
-    };
-
-    req.send();
-        }
-    </script>
-     <div id="player"></div>
+    </div><!-- /wrapper -->
+    <script src="sp://radiomap/js/map.js"></script>
+    
+    <div id="player"></div>
     </body>
 </html>
