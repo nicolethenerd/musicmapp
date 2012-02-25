@@ -41,14 +41,31 @@
             x_y = userMap.mouse(e)
             lat_lon = userMap.pointLocation(x_y)
 //           country_name = lat_lon.lat + "," + lat_lon.lon
-            country_name = fetch_country_name(lat_lon.lat, lat_lon.lon)
+            fetch_country_name(lat_lon.lat, lat_lon.lon)
             
-            document.getElementById("country_name").innerHTML = country_name
+            //document.getElementById("country_name").innerHTML = country_name
         };
         
         function fetch_country_name(lat, lon) {
-            return lat_lon.lat + "," + lat_lon.lon;
-                
+            //return lat_lon.lat + "," + lat_lon.lon;
+            var req = new XMLHttpRequest();
+            req.open("GET", "http://api.geonames.org/countryCode?lat=47.03&lng=10.2&username=demo&type=JSON", true);
+
+            req.onreadystatechange = function() {
+
+            console.log(req.status);
+            console.log(req.responseText);
+
+            if (req.readyState == 4) {
+                if (req.status != 404) {
+                    console.log("Search complete!");
+                    console.log(req.responseText);
+                    document.getElementById("country_name").innerHTML = req.responseText
+            }
+        }
+    };
+
+    req.send();
         }
         </script>
      <div id="player"></div>
