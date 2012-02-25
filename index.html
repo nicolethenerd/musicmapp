@@ -24,6 +24,8 @@
         
         <script src="sp://radiomap/leaflet/leaflet.js"></script>
         <script src="sp://radiomap/js/jquery.min.js"></script>
+        <script src="sp://radiomap/js/lastfm.js"></script>
+
     </head>
     <body onload="sp = getSpotifyApi(1); tutorial = sp.require('tutorial'); tutorial.init(); setup_highlights();">
     
@@ -34,9 +36,11 @@
             <div id="header_text">Top Tracks in <span id="country_name">Country</span>:</div>
     </div><!-- /wrapper -->
     <script src="sp://radiomap/js/map.js"></script>
-    
+
     <div id="player"></div>
-    
+
+    <input type="button" value="Click Here" onClick="getLastFmTopCountrySongs('ecuador');" />
+ 
     <script>
     
     function setup_highlights() {
