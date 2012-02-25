@@ -3,14 +3,14 @@ var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/090dcb454ecf48dab
     attribution: 'Map data &copy; OpenStreetMap contributors, CC-BY-SA, Imagery © CloudMade',
     maxZoom: 18
 });
-var london = new L.LatLng(51.505, -0.09); // geographical point (longitude and latitude)
-userMap.setView(london, 13).addLayer(cloudmade);
+var center = new L.LatLng(50, 0);
+userMap.setView(center, 1);
 
 var geojsonLayer = new L.GeoJSON();
 
 geojsonLayer.on("featureparse", function (e) {
-    if (e.properties && e.properties.popupContent){
-        e.layer.bindPopup(e.properties.popupContent);
+    if (e.properties && e.properties.name){
+        e.layer.bindPopup(e.properties.name);
     }
 });
 
