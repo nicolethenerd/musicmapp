@@ -18,13 +18,14 @@
             #app_name {padding-top:5px; color: white;}
                        
             #header_text {padding: 10px; }
+            
         </style>
         <link rel="stylesheet" href="http://code.leafletjs.com/leaflet-0.3.1/leaflet.css" />
         
         <script src="sp://radiomap/js/leaflet.js"></script>
         <script src="sp://radiomap/js/jquery.min.js"></script>
     </head>
-    <body onload="sp = getSpotifyApi(1); tutorial = sp.require('tutorial'); tutorial.init();">
+    <body onload="sp = getSpotifyApi(1); tutorial = sp.require('tutorial'); tutorial.init(); highlight();">
     
     <div id="branded_area"><div id="app_name">AppName</div></div>
     
@@ -35,5 +36,15 @@
     <script src="sp://radiomap/js/map.js"></script>
     
     <div id="player"></div>
+    
+    <script>
+    
+    function highlight() {
+        $('path').click(function () {
+            $('path').css('stroke','blue')
+            $(this).css('stroke','red')
+        });
+}
+    </script>
     </body>
 </html>
