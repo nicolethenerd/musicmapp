@@ -5,9 +5,18 @@
     <title>My First App</title>
     <link rel="stylesheet" href="sp://import/css/adam.css">
     <link rel="stylesheet" href="tutorial.css">
+    <style>
+        @import url('sp://import/css/api.css');
+        @import url('sp://import/css/eve.css');
+        @import url('sp://import/css/list.css');
+        @import url('sp://import/css/player.css');
+     </style>
+     <script src="sp://radiomap/js/jquery.min.js"></script>
+
 </head>
-<body>
-<h1 id="header">Hello, world!</h1>
+<body onload="sp = getSpotifyApi(1); tutorial = sp.require('tutorial'); tutorial.init();">
+<h1 id="header">Hello, world world world!</h1>
+<div id="player"></div>
 </body>
 </html>
 
