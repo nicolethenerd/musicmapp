@@ -18,7 +18,7 @@ function init() {
     var player = new views.Player();
     player.track = pl.get(0);
     player.context = pl;
-   
+    player.image = null;   
     $('#player').append(player.node);
 
     var plView = new views.List(pl);
