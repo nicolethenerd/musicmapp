@@ -4,13 +4,13 @@ var models = sp.require('sp://import/scripts/api/models');
 var views = sp.require('sp://import/scripts/api/views');
  
 var player = new views.Player();
-var tl = new models.Toplist();
 
 var activeLastFmUriCalls = 0;
 var activeSpotifyCalls = 0;
 
 var liveFmTracks = null;
 var spotifyTracks = null;
+
 
 function getSongsForSelectedCountry(country) {
 
@@ -24,29 +24,30 @@ function getSongsForSelectedCountry(country) {
 
 
 function RequestSpotifyTracksForCountry(countryName){
+	var tl = new models.Toplist();
 	tl.toplistType = models.TOPLISTTYPE.REGION;
     tl.matchType = models.TOPLISTMATCHES.TRACKS;
     tl.region = getRegionCode(countryName);
 
-    console.log("Toplist Region: " + tl.region);
+    if(tl.region!= null){
+	    tl.observe(models.EVENT.CHANGE, function(){
+		       console.log("Loaded " + tl.results.length +  " tracks");
+		       
+		       for(var i=0; i<20; i++){   
+		       	   spotifyTracks.push(tl.results[i]);
+		       }
+		       --activeSpotifyCalls;    
+		       RefreshTracks();
+	    	});
 
-    tl.observe(models.EVENT.CHANGE, function(){
-	       console.log("Loaded " + tl.results.length +  " tracks");
-	       
-	       for(var i=0; i<20; i++){   
-	       	   spotifyTracks.push(tl.results[i]);
-	       }
-	       --activeSpotifyCalls;    
-	       RefreshTracks();
-    	});
+	    tl.observe(models.EVENT.LOAD_ERROR, function(){
+	       console.log("Failed to load toplist");
+		   --activeSpotifyCalls;    
+	    });
 
-    tl.observe(models.EVENT.LOAD_ERROR, function(){
-       console.log("Failed to load toplist");
-	   --activeSpotifyCalls;    
-    });
-
-    ++activeSpotifyCalls;
-    tl.run();
+	    ++activeSpotifyCalls;
+	    tl.run();
+	}
 }
 
 function getRegionCode(countryName){	
@@ -62,10 +63,27 @@ function getRegionCode(countryName){
 		  	return "DK";
 		case "SPAIN":
 		  	return "ES"; 
-		case "MEXICO":
-		  	return "MX"; 	 	
+		case "FINLAND":
+		  	return "FI";
+		case "FRANCE":
+			return "FR";
+		case "UNITED KINGDOM":
+			return "UK";
+		case "NETHERLANDS":
+			return "NL";
+		case "NORWAY":
+			return "NO";
+		case "SWEDEN":
+			return "SE";				 	 	 	
+		case "AUSTRIA":
+			return "AT";				 	 	 	
+		case "SWITZERLAND":
+			return "CH";				 	 	 	
+		case "BELGIUM":
+			return "BE";				 	 	 	
+
 		default:
-			return "US";
+			return null;
 	}
 }
 
@@ -114,9 +132,7 @@ function getSpotifyURI(songName, artistName){
 
 function RefreshTracks(){
 
-	console.log("tl.running? " + tl.running);
-	
-	if( activeLastFmUriCalls == 0 && (activeSpotifyCalls == 0 || (activeSpotifyCalls > 0 && tl.running == false))){
+	if( activeLastFmUriCalls == 0 && activeSpotifyCalls == 0){
 		//merge with existing play list
 		console.log("**************liveFmTracks***************");
 		for(var i=0;i<liveFmTracks.length;++i){
