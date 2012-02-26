@@ -8,13 +8,16 @@ var player = new views.Player();
 var activeLastFmUriCalls = 0;
 var activeSpotifyCalls = 0;
 
-var liveFmTracks = new Array();
-var spotifyTracks = new Array();
+var liveFmTracks = null;
+var spotifyTracks = null;
 
 function getSongsForSelectedCountry() {
     var country = $('.leaflet-popup-content').text();
 
     $('#country_name').innerHTML = country
+   	
+   	liveFmTracks = new Array();
+	spotifyTracks = new Array();
 	RequestSpotifyTracksForCountry('mexico');
     RequestLastFmTracksForCountry('mexico');
 }
@@ -117,6 +120,7 @@ function RefreshTracks(){
 		player.track = pl.get(0);
 		player.context = pl;
 		var plView = new views.List(pl);
+		$('#player').empty();
 		$('#player').append(plView.node);
 	}
 }
