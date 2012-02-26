@@ -2552,7 +2552,7 @@ L.Map.include({
 		var country = popup._content;
 		console.log(country);
 		if(country.length > 0)
-			getLastFmTopTrack(country);
+			//getLastFmTopTrack(country);
 		return this;
 	},
 
