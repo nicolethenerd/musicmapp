@@ -18,15 +18,16 @@ function getSongsForSelectedCountry() {
    	
    	liveFmTracks = new Array();
 	spotifyTracks = new Array();
-	RequestSpotifyTracksForCountry('mexico');
-    RequestLastFmTracksForCountry('mexico');
+	RequestSpotifyTracksForCountry(country);
+    RequestLastFmTracksForCountry(country);
 }
+
 
 function RequestSpotifyTracksForCountry(countryName){
 	var tl = new models.Toplist();
 	tl.toplistType = models.TOPLISTTYPE.REGION;
     tl.matchType = models.TOPLISTMATCHES.TRACKS;
-    tl.region = "US";
+    tl.region = getRegionCode(countryName);
 
     tl.observe(models.EVENT.CHANGE, function(){
 	       console.log("Loaded " + tl.results.length +  " tracks");
@@ -40,14 +41,31 @@ function RequestSpotifyTracksForCountry(countryName){
 
     tl.observe(models.EVENT.LOAD_ERROR, function(){
        console.log("Failed to load toplist");
+	   --activeSpotifyCalls;    
     });
 
     ++activeSpotifyCalls;
     tl.run();
 }
 
-function getRegionCode(countryName){
-	//add switch for all spotify countries
+function getRegionCode(countryName){	
+	console.log("Requesting Code for " + countryName);
+
+	countryName = countryName.toUpperCase();
+	
+	switch(countryName)
+	{
+		case "UNITED STATES":
+			return "US";
+		case "DENMARK":
+		  	return "DK";
+		case "SPAIN":
+		  	return "ES"; 
+		case "MEXICO":
+		  	return "MX"; 	 	
+		default:
+			return "US";
+	}
 }
 
 function RequestLastFmTracksForCountry(countryName){
@@ -82,12 +100,9 @@ function getSpotifyURI(songName, artistName){
                    spotifyUri = $(this).text();
                 });
 
-     		    console.log("spotifyUri: " + spotifyUri);
-
             	if(spotifyUri.length > 0){
             		var track = models.Track.fromURI(spotifyUri);
             		liveFmTracks.push(track);
-            		console.log("liveFmTracks.length" + liveFmTracks.length);
             	}
 
 				activeLastFmUriCalls--;
@@ -111,12 +126,18 @@ function RefreshTracks(){
 		
 		var pl = new models.Playlist();
 		var allTracks = new Array();
-		allTracks = allTracks.concat(liveFmTracks, spotifyTracks);
+		var finalTracks = new Array();
 
+		allTracks = allTracks.concat(liveFmTracks, spotifyTracks)
+		
 		for(var i=0; i<allTracks.length; ++i){
-			pl.add(allTracks[i]);
+			finalTracks[allTracks[i].data.uri] = allTracks[i];
 		}
-
+		
+		for(key in finalTracks){
+			pl.add(finalTracks[key]);
+		}
+		
 		player.track = pl.get(0);
 		player.context = pl;
 		var plView = new views.List(pl);
