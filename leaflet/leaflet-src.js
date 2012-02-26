@@ -2549,7 +2549,10 @@ L.Map.include({
 		this.addLayer(popup);
 		this.fire('popupopen', { popup: this._popup });
 		
-		console.log(popup._content);
+		var country = popup._content;
+		console.log(country);
+		if(country.length > 0)
+			getLastFmTopTrack(country);
 		return this;
 	},
 
