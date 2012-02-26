@@ -13,7 +13,7 @@ var geojsonLayer = new L.GeoJSON();
 geojsonLayer.on("featureparse", function (e) {
     if (e.properties && e.properties.name){
         e.layer.bindPopup(e.properties.name);
-        e.layer.setStyle({ color:  'blue', weight: 2, fill: true, fillColor: 'blue', fillOpacity: 0.3 });
+        e.layer.setStyle({ color:  'blue', weight: 2, fill: true, fillColor: 'blue', fillOpacity: 0.3});
     }
 });
 
@@ -26,3 +26,4 @@ $.getJSON(
     });
 
 userMap.addLayer(geojsonLayer);
+
