@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+
+<!--
+Copyright (c) 2012 Nicole Bieber and Johny Urgiles.
+Powered by Leaflet and Last.fm 
+-->
+
 <html>
     <head>
 
@@ -7,37 +13,31 @@
             @import url('sp://import/css/list.css');
             @import url('sp://import/css/player.css');
             @import url('sp://import/css/eve.css');
-            
-            @font-face {
-                font-family: 'Bellerose';
-                src: url('sp://radiomap/Bellerose.ttf') format('truetype');
-            }
-            
+            @import url('sp://radiomap/blokletters/stylesheet.css');
+            @import url('sp://radiomap/leaflet/leaflet.css');
+
             html {background-color: #010f18;}
             body {background-color: #010f18; overflow-x: hidden;}
             #mapdiv {overflow: hidden;height:300px;}
-            #branded_area {height:30px; text-align:center;
+            #branded_area {height:36px; text-align:center;
             z-index: 100;
             background: -webkit-linear-gradient(top, #010f18 0%,#062a40 100%);}
-            #app_name {padding-top:5px; color: white; font: 'Bellerose';}
+            #app_name {padding-top:10px; color: white; font-family:'BloklettersViltstift';  font-size: 18px;
+                         text-shadow: #6374AB -1px -1px -2px;}
                        
             #header_text {padding: 10px;}
             
-            .leaflet_popup_pane {display: none;}
-            .leaflet_tile_pane {display: none;}
+            .leaflet_popup_pane,
+            .leaflet_tile_pane,
+            .leaflet-control-attribution {display: none;}
+
+            .left {float:left; width:10em; margin: 10px;} 
+            .right {float:right; width:10em;}
+
+            .add-playlist {position:absolute; top: 304px; left:10px;}
         </style>
-        <link rel="stylesheet" href="sp://radiomap/leaflet/leaflet.css" />
-
-        <script src="sp://radiomap/leaflet/leaflet.js"></script>
+        <script src="sp://radiomap/leaflet/leaflet-src.js"></script>
         <script src="sp://radiomap/js/jquery.min.js"></script>
-       
-        <!--script> 
-
-            $(document).ready(function() {
-                sp = getSpotifyApi(1);               
-            });
-        </script-->
-
         <script src="sp://radiomap/js/listmagic.js"></script>       
     </head>
 
@@ -49,17 +49,13 @@
          </div>
          <div id="wrapper">
             <div id="mapdiv"></div>
-            <div id="header_text">
-                Top Tracks in <span id="country_name">Country</span>:
-            </div>
          </div><!-- /wrapper -->
          <script src="sp://radiomap/js/map.js"></script>
-         <div id="buttons">  
-            <button class="add-playlist button icon"><span class="plus"></span>Add as Playlist</button>
-         </div>
+         
+         <button class="add-playlist button icon"><span class="plus"></span>Add as Playlist</button>
+            
 
          <div id="player"></div>
-         <input type="button" id="gogo_gadget" value="Click Here" onClick="getSongsForSelectedCountry();" style="" />
     </div>
 
     <script>
@@ -70,13 +66,9 @@
             $('path').css('fill','blue')
             $(this).css('stroke','lime')
             $(this).css('fill','lime')
-            
-            $('#gogo_gadget').trigger('click');
         });
         
     }
-
-    
     </script>
     </body>
 </html>
