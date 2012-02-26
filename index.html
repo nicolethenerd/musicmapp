@@ -13,17 +13,18 @@ Powered by Leaflet and Last.fm
             @import url('sp://import/css/list.css');
             @import url('sp://import/css/player.css');
             @import url('sp://import/css/eve.css');
-            @import url('sp://radiomap/blokletters/stylesheet.css');
+            @import url('sp://radiomap/candela/stylesheet.css');
             @import url('sp://radiomap/leaflet/leaflet.css');
+            @import url('sp://radiomap/css/sortlist.css');
 
             html {background-color: #010f18;}
             body {background-color: #010f18; overflow-x: hidden;}
-            #mapdiv {overflow: hidden;height:300px;}
+            #mapdiv {overflow: hidden;height:360px;}
             #branded_area {height:36px; text-align:center;
             z-index: 100;
             background: -webkit-linear-gradient(top, #010f18 0%,#062a40 100%);}
-            #app_name {padding-top:10px; color: white; font-family:'BloklettersViltstift';  font-size: 18px;
-                         text-shadow: #6374AB -1px -1px -2px;}
+            #app_name {padding-top:10px; color: white; font-family:'CandelaBook';  font-size: 24px;
+                         text-shadow: #6374AB -2px 2px 1px;}
                        
             #header_text {padding: 10px;}
             
@@ -34,7 +35,7 @@ Powered by Leaflet and Last.fm
             .left {float:left; width:10em; margin: 10px;} 
             .right {float:right; width:10em;}
 
-            .add-playlist {position:absolute; top: 304px; left:10px;}
+            .add-playlist {position:absolute; top: 364px; left:10px;}
         </style>
         <script src="sp://radiomap/leaflet/leaflet-src.js"></script>
         <script src="sp://radiomap/js/jquery.min.js"></script>
@@ -53,7 +54,16 @@ Powered by Leaflet and Last.fm
          <script src="sp://radiomap/js/map.js"></script>
          
          <button class="add-playlist button icon"><span class="plus"></span>Add as Playlist</button>
-            
+        
+        <div id="collection-sort" class="sortlist">
+            <div>
+                <span sort="tracks-sort-starred" class="sort tracks-sort-starred"><span class="sp-icon-star"></span></span>
+                <span sort="tracks-sort-collected" class="sort tracks-sort-collected"></span>
+                <span sort="tracks-sort-name" class="sort tracks-sort-name">Track</span>
+                <span sort="tracks-sort-album" class="sort tracks-sort-album selected">Artist</span>
+                <span sort="tracks-sort-year" class="sort tracks-sort-year">Time</span>
+            </div>
+        </div>
 
          <div id="player"></div>
     </div>
