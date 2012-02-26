@@ -1,0 +1,11 @@
+MusicMapp is a Spotify app that lets you hear what's cool around the world!  Click on a country to view a playlist songs that are popular in that region.  MusicMapp leverages the last.fm geo API in addition to Spotify's own popularity data to generate a playlist for each country.
+
+Tech Stack:
+- Leaflet - mapping library
+- Last.fm API - popularity data
+- Spotify Apps API
+
+To run:
+1. Check out this project into your Spotify directory (create inside your home directory on a Mac).  
+2. Open spotify.  
+3. Type 'spottily:app:musicmapp' in the search bar
