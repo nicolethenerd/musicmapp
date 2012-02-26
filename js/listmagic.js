@@ -11,8 +11,7 @@ var activeSpotifyCalls = 0;
 var liveFmTracks = null;
 var spotifyTracks = null;
 
-function getSongsForSelectedCountry() {
-    var country = $('.leaflet-popup-content').text();
+function getSongsForSelectedCountry(country) {
 
     $('#country_name').innerHTML = country
    	
