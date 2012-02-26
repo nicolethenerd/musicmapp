@@ -12,6 +12,7 @@ var liveFmTracks = null;
 var spotifyTracks = null;
 
 function getSongsForSelectedCountry(country) {
+    $('.loading').show();
 
     $('#country_name').innerHTML = country
    	
@@ -19,6 +20,7 @@ function getSongsForSelectedCountry(country) {
 	spotifyTracks = new Array();
 	RequestSpotifyTracksForCountry('mexico');
     RequestLastFmTracksForCountry('mexico');
+
 }
 
 function RequestSpotifyTracksForCountry(countryName){
@@ -120,6 +122,8 @@ function RefreshTracks(){
 		player.context = pl;
 		var plView = new views.List(pl);
 		$('#player').empty();
+
+        $('.loading').hide();
 		$('#player').append(plView.node);
 	}
 }
