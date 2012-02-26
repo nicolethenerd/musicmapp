@@ -4,6 +4,7 @@ var models = sp.require('sp://import/scripts/api/models');
 var views = sp.require('sp://import/scripts/api/views');
  
 var player = new views.Player();
+var tl = new models.Toplist();
 
 var activeLastFmUriCalls = 0;
 var activeSpotifyCalls = 0;
@@ -23,10 +24,11 @@ function getSongsForSelectedCountry(country) {
 
 
 function RequestSpotifyTracksForCountry(countryName){
-	var tl = new models.Toplist();
 	tl.toplistType = models.TOPLISTTYPE.REGION;
     tl.matchType = models.TOPLISTMATCHES.TRACKS;
     tl.region = getRegionCode(countryName);
+
+    console.log("Toplist Region: " + tl.region);
 
     tl.observe(models.EVENT.CHANGE, function(){
 	       console.log("Loaded " + tl.results.length +  " tracks");
@@ -111,7 +113,10 @@ function getSpotifyURI(songName, artistName){
 }
 
 function RefreshTracks(){
-	if(activeLastFmUriCalls == 0 && activeSpotifyCalls == 0){
+
+	console.log("tl.running? " + tl.running);
+	
+	if( activeLastFmUriCalls == 0 && (activeSpotifyCalls == 0 || (activeSpotifyCalls > 0 && tl.running == false))){
 		//merge with existing play list
 		console.log("**************liveFmTracks***************");
 		for(var i=0;i<liveFmTracks.length;++i){
