@@ -1,4 +1,4 @@
-function getLastFmTopCountrySongs(countryName){
+function getLastFmTopTrack(countryName){
     var api_key = "3938d8cf503b62fcc4d3c616d2f99b48";
     var reqUrl = "http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=" + countryName + "&api_key="+api_key;
     var uris = new Array();

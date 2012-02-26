@@ -7,12 +7,7 @@
             @import url('sp://import/css/list.css');
             @import url('sp://import/css/player.css');
             @import url('sp://import/css/eve.css');
-            
-            @font-face {
-                font-family: 'Bellerose';
-                src: url('sp://radiomap/Bellerose.ttf') format('truetype');
-            }
-            
+           
             html {background-color: black;}
             body {background-color: black; overflow-x: hidden;}
             
@@ -20,9 +15,9 @@
             #branded_area {height:30px; text-align:center;
             z-index: 100;
             background: -webkit-linear-gradient(top, #010f18 0%,#062a40 100%);}
-            #app_name {padding-top:5px; color: white; font: 'Bellerose';}
+            #app_name {padding-top:5px; color: white;}
                        
-            #header_text {padding: 10px;}
+            #header_text {padding: 10px; }
             
             .leaflet_popup_pane {display: none;}
             .leaflet_tile_pane {display: none;}
@@ -36,20 +31,16 @@
     </head>
     <body onload="sp = getSpotifyApi(1); tutorial = sp.require('tutorial'); tutorial.init(); setup_highlights();">
     
-    <div id="branded_area"><div id="app_name">MusicMapp</div></div>
+    <div id="branded_area"><div id="app_name">RadioMap</div></div>
     
     <div id="wrapper">
             <div id="mapdiv"></div>
             <div id="header_text">Top Tracks in <span id="country_name">Country</span>:</div>
-            
-            
     </div><!-- /wrapper -->
     <script src="sp://radiomap/js/map.js"></script>
 
-
-
     <div id="player"></div>
-    <input type="button" id="gogo_gadget" value="Click Here" onClick="getSongsForSelectedCountry();" style="display:none;" />
+    <input type="button" value="Click Here" onClick="getSongsForSelectedCountry();" />
  
     <script>
     
@@ -59,10 +50,11 @@
             $('path').css('fill','blue')
             $(this).css('stroke','lime')
             $(this).css('fill','lime')
-            
-            $('#gogo_gadget').trigger('click');
         });
         
+        $(document).ready(function () {
+            console.log($('.leaflet-popup-content').text())
+        })
     }
     
     function getSongsForSelectedCountry() {

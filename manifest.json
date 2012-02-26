@@ -6,7 +6,7 @@
 		"36x18": "tutorial.png"
 	},
 	"AppName": {
-		"en": "MusicMapp"
+		"en": "RadioMap"
 	},
 	"BundleIdentifier": "radiomap",
 	"BundleType": "Application",
