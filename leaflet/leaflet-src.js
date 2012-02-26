@@ -2548,7 +2548,8 @@ L.Map.include({
 		this._popup = popup;
 		this.addLayer(popup);
 		this.fire('popupopen', { popup: this._popup });
-	
+		
+		console.log(popup._content);
 		return this;
 	},
 
