@@ -17,8 +17,8 @@ Powered by Leaflet and Last.fm
             @import url('sp://musicmapp/leaflet/leaflet.css');
             @import url('sp://musicmapp/css/sortlist.css');
 
-            html {background-color: #010f18;}
-            body {background-color: #010f18; overflow-x: hidden;}
+            html {background-color: black}
+            body {background-color: black; overflow-x: hidden;}
             #mapdiv {overflow: hidden;height:360px;}
             #branded_area {height:36px; text-align:center;
             z-index: 100;
@@ -34,7 +34,7 @@ Powered by Leaflet and Last.fm
             .leaflet-popup-close-button {display: none;}
 
             .left {float:left; width:10em; margin: 10px;} 
-            .right {float:right; width:10em;}
+            .right {float:right; width:10em; margin: -10px;}
 
             .add-playlist {position:absolute; top: 364px; left:10px;}
 
@@ -43,6 +43,7 @@ Powered by Leaflet and Last.fm
             .sp-list {max-height: 100000px;}
 
             #welcome {margin: auto; text-align: center; font-size: 36px; margin-top: 50px;}
+            #lastfm {position:absolute; top: 364px;}
         </style>
         <script src="sp://musicmapp/leaflet/leaflet-src.js"></script>
         <script src="sp://musicmapp/js/jquery.min.js"></script>
@@ -53,16 +54,21 @@ Powered by Leaflet and Last.fm
    
     <div id="body"> 
         <div id="top">
-             <div id="branded_area">
+            <div id="branded_area">
                  <div id="app_name">MusicMapp</div>
-             </div>
-             <div id="wrapper">
+            </div>
+            <div id="wrapper">
                 <div id="mapdiv"></div>
-             </div><!-- /wrapper -->
-             <script src="sp://musicmapp/js/map.js"></script>
+            </div><!-- /wrapper -->
+            <script src="sp://musicmapp/js/map.js"></script>
+            
+            <div class="left">
+                <button class="add-playlist button icon" onclick="CopyViewToNamedPlaylist();"><span class="plus"></span>Add as Playlist</button>
+            </div>
+            <div class="right">
+                <img id="lastfm" src="sp://musicmapp/img/lastfm.png" width="100px"></img>
+            </div>
              
-             <button class="add-playlist button icon" onclick="CopyViewToNamedPlaylist();"><span class="plus"></span>Add as Playlist</button>
- 
         </div>
         <div id="bottom">
             
