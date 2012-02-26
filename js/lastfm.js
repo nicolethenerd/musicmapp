@@ -7,7 +7,8 @@ function getLastFmTopCountrySongs(countryName){
     dataType: "xml",
     success: function(xml){
                $('track', xml).each(function(){
-                   console.log( $(this).find('name').text() + " -  " +  $(this).find('artist').find('name').text());
+                   var songName =  $(this).find('>name').text();
+                   var artistName =  $(this).find('artist>name').text();
                 });
     }
  });
