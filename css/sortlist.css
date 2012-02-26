@@ -1,0 +1,52 @@
+.sortlist {
+	background: -webkit-gradient(linear, left top, left bottom, from(#AAA), to(#666));
+	font-weight: bold;
+	text-shadow: 0px 1px #999;
+	color: #222;
+	border-spacing: initial;
+	display: table;
+	font-size: 11px;
+	left: 0;
+	line-height: 20px;
+	height:20px;
+	position: relative;
+	right: 0;
+	table-layout: fixed;
+	top: 0;
+	width: 100%;
+}
+.sortlist > div {
+	cursor: pointer;
+	display: table;
+	position: absolute;
+	table-layout: fixed;
+	text-decoration: none;
+	width: 100%;
+}
+.sortlist .sort {
+	display: table-cell;
+	overflow: hidden;
+	padding: 0 5px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	border-width: 0px 1px;
+	border-style: solid;
+	border-color:  transparent rgba(255, 255, 255, 0.05)  transparent rgba(0, 0, 0, 0.2);
+}
+.sortlist .selected {	
+	text-shadow: 0px 1px #aaa;
+	background: -webkit-gradient(linear, left top, left bottom, from(#bbb), to(#888));
+	border-color:  transparent rgba(255, 255, 255, 0.05)  transparent rgba(0, 0, 0, 0.4);
+}
+.tracks-sort-starred {
+	padding-left:8px!important;
+	width: 26px;
+	border-left:0px;
+}
+.tracks-sort-collected {
+	width: 30px;
+}
+.tracks-sort-year {
+	width: 30px;
+	text-align: center;
+}

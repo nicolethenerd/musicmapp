@@ -2548,7 +2548,11 @@ L.Map.include({
 		this._popup = popup;
 		this.addLayer(popup);
 		this.fire('popupopen', { popup: this._popup });
-	
+		
+		var country = popup._content;
+		console.log(country);
+		if(country.length > 0)
+			getSongsForSelectedCountry(country);
 		return this;
 	},
 
