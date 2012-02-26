@@ -74,8 +74,6 @@ function getRegionCode(countryName){
 		  	return "FI";
 		case "FRANCE":
 			return "FR";
-		case "UNITED KINGDOM":
-			return "UK";
 		case "NETHERLANDS":
 			return "NL";
 		case "NORWAY":
@@ -98,7 +96,7 @@ function RequestLastFmTracksForCountry(countryName){
 	activeLastFmUriCalls++;
 
     var api_key = "3938d8cf503b62fcc4d3c616d2f99b48";
-    var reqUrl = "http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=" + countryName + "&limit=20&api_key="+api_key;
+    var reqUrl = "http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=" + countryName + "&limit=25&api_key="+api_key;
     $.ajax({
     url: reqUrl,
     dataType: "xml",
@@ -159,13 +157,19 @@ function RefreshTracks(){
 		
 		var allTracks = new Array();
 		var finalTracks = new Array();
+		var MAX_LIST_SIZE = 25;
 
-		allTracks = allTracks.concat(lastFmTracks, spotifyTracks)
-		
-		for(var i=0; i<allTracks.length; ++i){
-			finalTracks[allTracks[i].data.uri] = allTracks[i];
+		if(spotifyTracks.length > MAX_LIST_SIZE){
+			finalTracks = Array.slice(0, MAX_LIST_SIZE, spotifyTracks);
+		}else{
+
+			allTracks = allTracks.concat(spotifyTracks, lastFmTracks)
+			
+			for(var i=0; i<allTracks.length && Object.keys(finalTracks).length < MAX_LIST_SIZE; ++i){
+				finalTracks[allTracks[i].data.uri] = allTracks[i];
+			}
 		}
-		
+
 		pl = new models.Playlist();
 		for(key in finalTracks){
 			pl.add(finalTracks[key]);
