@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+
+<!--
+Copyright (c) 2012 Nicole Bieber and Johny Urgiles.
+Powered by Leaflet and Last.fm 
+-->
+
 <html>
     <head>
 
@@ -7,19 +13,17 @@
             @import url('sp://import/css/list.css');
             @import url('sp://import/css/player.css');
             @import url('sp://import/css/eve.css');
-            
-            @font-face {
-                font-family: 'Bellerose';
-                src: url('sp://radiomap/Bellerose.ttf') format('truetype');
-            }
-            
+            @import url('sp://radiomap/blokletters/stylesheet.css');
+            @import url('sp://radiomap/leaflet/leaflet.css');
+
             html {background-color: #010f18;}
             body {background-color: #010f18; overflow-x: hidden;}
             #mapdiv {overflow: hidden;height:300px;}
-            #branded_area {height:30px; text-align:center;
+            #branded_area {height:36px; text-align:center;
             z-index: 100;
             background: -webkit-linear-gradient(top, #010f18 0%,#062a40 100%);}
-            #app_name {padding-top:5px; color: white; font: 'Bellerose';}
+            #app_name {padding-top:10px; color: white; font-family:'BloklettersViltstift';  font-size: 18px;
+                         text-shadow: #6374AB -1px -1px -2px;}
                        
             #header_text {padding: 10px;}
             
@@ -30,7 +34,6 @@
             .left {float:left; width:10em; margin: 10px;} 
             .right {float:right; width:10em;}
         </style>
-        <link rel="stylesheet" href="sp://radiomap/leaflet/leaflet.css" />
         
         <script src="sp://radiomap/leaflet/leaflet-src.js"></script>
         <script src="sp://radiomap/js/jquery.min.js"></script>
