@@ -96,7 +96,7 @@ function RequestLastFmTracksForCountry(countryName){
 	activeLastFmUriCalls++;
 
     var api_key = "3938d8cf503b62fcc4d3c616d2f99b48";
-    var reqUrl = "http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=" + countryName + "&limit=25&api_key="+api_key;
+    var reqUrl = "http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=" + countryName + "&limit=35&api_key="+api_key;
     $.ajax({
     url: reqUrl,
     dataType: "xml",
