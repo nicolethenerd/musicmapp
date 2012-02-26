@@ -13,6 +13,7 @@ var spotifyTracks = null;
 
 
 function getSongsForSelectedCountry(country) {
+    $('.loading').show();
 
     $('#country_name').innerHTML = country
    	
@@ -162,6 +163,8 @@ function RefreshTracks(){
 		player.context = pl;
 		var plView = new views.List(pl);
 		$('#player').empty();
+
+        $('.loading').hide();
 		$('#player').append(plView.node);
 	}
 }

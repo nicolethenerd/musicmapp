@@ -55,17 +55,12 @@ Powered by Leaflet and Last.fm
          
          <button class="add-playlist button icon"><span class="plus"></span>Add as Playlist</button>
         
-        <div id="collection-sort" class="sortlist">
-            <div>
-                <span sort="tracks-sort-starred" class="sort tracks-sort-starred"><span class="sp-icon-star"></span></span>
-                <span sort="tracks-sort-collected" class="sort tracks-sort-collected"></span>
-                <span sort="tracks-sort-name" class="sort tracks-sort-name">Track</span>
-                <span sort="tracks-sort-album" class="sort tracks-sort-album selected">Artist</span>
-                <span sort="tracks-sort-year" class="sort tracks-sort-year">Time</span>
-            </div>
-        </div>
 
+         <div class="loading" style="display: none">
+            <div class="throbber"><div></div></div>
+         </div>
          <div id="player"></div>
+
     </div>
 
     <script>
