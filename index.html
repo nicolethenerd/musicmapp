@@ -36,31 +36,37 @@ Powered by Leaflet and Last.fm
             .right {float:right; width:10em;}
 
             .add-playlist {position:absolute; top: 364px; left:10px;}
+
+            .bottom {overflow: hidden;}
+
+            .sp-list {max-height: 380px;}
         </style>
         <script src="sp://radiomap/leaflet/leaflet-src.js"></script>
         <script src="sp://radiomap/js/jquery.min.js"></script>
         <script src="sp://radiomap/js/listmagic.js"></script>       
     </head>
 
-    <body onload="setup_highlights();">
+    <body onload="setup_highlights(); set_bottom_height();">
    
     <div id="body"> 
-         <div id="branded_area">
-             <div id="app_name">MusicMapp</div>
-         </div>
-         <div id="wrapper">
-            <div id="mapdiv"></div>
-         </div><!-- /wrapper -->
-         <script src="sp://radiomap/js/map.js"></script>
-         
-         <button class="add-playlist button icon" onclick="CopyViewToNamedPlaylist();"><span class="plus"></span>Add as Playlist</button>
-        
-
-         <div class="loading" style="display: none">
-            <div class="throbber"><div></div></div>
-         </div>
-         <div id="player"></div>
-
+        <div id="top">
+             <div id="branded_area">
+                 <div id="app_name">MusicMapp</div>
+             </div>
+             <div id="wrapper">
+                <div id="mapdiv"></div>
+             </div><!-- /wrapper -->
+             <script src="sp://radiomap/js/map.js"></script>
+             
+             <button class="add-playlist button icon" onclick="CopyViewToNamedPlaylist();"><span class="plus"></span>Add as Playlist</button>
+ 
+        </div>
+        <div id="bottom">
+            
+             <div id="player">
+                Click on a country to get started.
+             </div>
+        </div>
     </div>
 
     <script>
@@ -72,6 +78,13 @@ Powered by Leaflet and Last.fm
             $(this).css('stroke','lime')
             $(this).css('fill','lime')
         });
+        
+    }
+
+    function set_bottom_height() {
+        var bottom_height = window.innerHeight - $('#top').height();
+        console.log( bottom_height);
+        $('#bottom').height(bottom_height);
         
     }
     </script>

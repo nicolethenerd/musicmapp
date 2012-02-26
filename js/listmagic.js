@@ -15,7 +15,10 @@ var spotifyTracks = null;
 
 
 function getSongsForSelectedCountry(country) {
+    $('#player').empty();
+    $('#player').append('<div class="loading"><div class="throbber"><div></div></div></div>');
     $('.loading').show();
+
 
     $('#country_name').innerHTML = country
    	
