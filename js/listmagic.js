@@ -9,7 +9,7 @@ var activeLastFmUriCalls = 0;
 var activeSpotifyCalls = 0;
 
 var pl = null;
-var liveFmTracks = null;
+var lastFmTracks = null;
 var spotifyTracks = null;
 
 
@@ -22,7 +22,7 @@ function getSongsForSelectedCountry(country) {
 
     $('#country_name').innerHTML = country
    	
-   	liveFmTracks = new Array();
+   	lastFmTracks = new Array();
 	spotifyTracks = new Array();
 
 	RequestSpotifyTracksForCountry(country);
@@ -131,7 +131,7 @@ function getSpotifyURI(songName, artistName){
 
             	if(spotifyUri.length > 0){
             		var track = models.Track.fromURI(spotifyUri);
-            		liveFmTracks.push(track);
+            		lastFmTracks.push(track);
             	}
 
 				activeLastFmUriCalls--;
@@ -147,9 +147,9 @@ function RefreshTracks(){
 
 	if( activeLastFmUriCalls == 0 && activeSpotifyCalls == 0){
 		//merge with existing play list
-		console.log("**************liveFmTracks***************");
-		for(var i=0;i<liveFmTracks.length;++i){
-			console.log(liveFmTracks[i].name)
+		console.log("**************lastFmTracks***************");
+		for(var i=0;i<lastFmTracks.length;++i){
+			console.log(lastFmTracks[i].name)
 		}
 		
 		console.log("**************spotifyTracks***************");
@@ -160,7 +160,7 @@ function RefreshTracks(){
 		var allTracks = new Array();
 		var finalTracks = new Array();
 
-		allTracks = allTracks.concat(liveFmTracks, spotifyTracks)
+		allTracks = allTracks.concat(lastFmTracks, spotifyTracks)
 		
 		for(var i=0; i<allTracks.length; ++i){
 			finalTracks[allTracks[i].data.uri] = allTracks[i];
