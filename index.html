@@ -41,6 +41,8 @@ Powered by Leaflet and Last.fm
             .bottom {overflow: hidden;}
 
             .sp-list {max-height: 100000px;}
+
+            #welcome {margin: auto; text-align: center; font-size: 36px; margin-top: 50px;}
         </style>
         <script src="sp://musicmapp/leaflet/leaflet-src.js"></script>
         <script src="sp://musicmapp/js/jquery.min.js"></script>
@@ -65,7 +67,7 @@ Powered by Leaflet and Last.fm
         <div id="bottom">
             
              <div id="player">
-                Click on a country to get started.
+                <div id="welcome">Welcome!  Click on a country to start.</div>
              </div>
         </div>
     </div>
@@ -73,16 +75,14 @@ Powered by Leaflet and Last.fm
     <script>
     
     function setup_highlights() {
+        $('path:first').trigger('click');
+
         $('path').click(function () {
             $('path').css('stroke','blue')
             $('path').css('fill','blue')
             $(this).css('stroke','lime')
             $(this).css('fill','lime')
         });
-        
-        $(document).ready(function () {
-            console.log($('.leaflet-popup-content').text())
-        })
     }
 
     function set_bottom_height() {
