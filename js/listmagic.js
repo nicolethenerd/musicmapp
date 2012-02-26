@@ -13,7 +13,10 @@ var spotifyTracks = null;
 
 
 function getSongsForSelectedCountry(country) {
+    $('#player').empty();
+    $('#player').append('<div class="loading"><div class="throbber"><div></div></div></div>');
     $('.loading').show();
+
 
     $('#country_name').innerHTML = country
    	
@@ -162,9 +165,8 @@ function RefreshTracks(){
 		player.track = pl.get(0);
 		player.context = pl;
 		var plView = new views.List(pl);
-		$('#player').empty();
 
-        $('.loading').hide();
+        $('#player').empty();
 		$('#player').append(plView.node);
 	}
 }
