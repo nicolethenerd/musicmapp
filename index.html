@@ -37,13 +37,12 @@ Powered by Leaflet and Last.fm
 
             .add-playlist {position:absolute; top: 364px; left:10px;}
         </style>
-        
         <script src="sp://radiomap/leaflet/leaflet-src.js"></script>
         <script src="sp://radiomap/js/jquery.min.js"></script>
-        <script src="sp://radiomap/js/lastfm.js"></script>
+        <script src="sp://radiomap/js/listmagic.js"></script>       
     </head>
 
-    <body onload="sp = getSpotifyApi(1); tutorial = sp.require('tutorial'); tutorial.init(); setup_highlights();">
+    <body onload="setup_highlights();">
    
     <div id="body"> 
          <div id="branded_area">
@@ -80,13 +79,6 @@ Powered by Leaflet and Last.fm
         });
         
     }
-    
-    function getSongsForSelectedCountry() {
-        var country = $('.leaflet-popup-content').text();
-        if(country.length > 0)
-            getLastFmTopTrack(country);
-    }
-    
     </script>
     </body>
 </html>
