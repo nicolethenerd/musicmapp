@@ -14,9 +14,6 @@
 .leaflet-image-layer { /* TODO optimize classes */
 	position: absolute;
 	}
-.leaflet-container {
-	overflow: hidden;
-	}
 .leaflet-tile-pane, .leaflet-container {
 	-webkit-transform: translate3d(0,0,0);
 	}
@@ -293,7 +290,7 @@ a.leaflet-active {
 /* Visual appearance */
 
 .leaflet-container {
-	background: #ddd;
+	background: black;
 	}
 .leaflet-container a {
 	color: #0078A8;
