@@ -23,11 +23,12 @@
                        
             #header_text {padding: 10px;}
             
-            .leaflet_popup_pane {display: none;}
-            .leaflet_tile_pane {display: none;}
+            .leaflet_popup_pane,
+            .leaflet_tile_pane,
+            .leaflet-control-attribution {display: none;}
 
-            .left {float:left; width:10em} 
-            .right {float:right; width:10em}
+            .left {float:left; width:10em; margin: 10px;} 
+            .right {float:right; width:10em;}
         </style>
         <link rel="stylesheet" href="sp://radiomap/leaflet/leaflet.css" />
         
@@ -48,9 +49,6 @@
          <script src="sp://radiomap/js/map.js"></script>
          <div id="buttons">
             <div class="left">
-                <button class="load_data button" onClick="getSongsForSelectedCountry();" >Go go gadget!</button>
-            </div>
-            <div class="right">
                 <button class="add-playlist button icon"><span class="plus"></span>Add as Playlist</button>
             </div>
          </div>
