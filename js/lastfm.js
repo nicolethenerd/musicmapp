@@ -1,7 +1,7 @@
 function getLastFmTopCountrySongs(countryname){
     var api_key = "3938d8cf503b62fcc4d3c616d2f99b48";
     var req = new XMLHttpRequest();
-    var reqUrl = "http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=ecuador&api_key="+api_key;
+    var reqUrl = "http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country="+countryname+"&api_key="+api_key;
     console.log("Request: " + reqUrl);
     req.open("GET", reqUrl, false);
     console.log("Request opened");
