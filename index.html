@@ -25,6 +25,9 @@
             
             .leaflet_popup_pane {display: none;}
             .leaflet_tile_pane {display: none;}
+
+            .left {float:left; width:10em} 
+            .right {float:right; width:10em}
         </style>
         <link rel="stylesheet" href="sp://radiomap/leaflet/leaflet.css" />
         
@@ -41,17 +44,18 @@
          </div>
          <div id="wrapper">
             <div id="mapdiv"></div>
-            <div id="header_text">
-                Top Tracks in <span id="country_name">Country</span>:
-            </div>
          </div><!-- /wrapper -->
          <script src="sp://radiomap/js/map.js"></script>
-         <div id="buttons">  
-            <button class="add-playlist button icon"><span class="plus"></span>Add as Playlist</button>
+         <div id="buttons">
+            <div class="left">
+                <button class="load_data button" onClick="getSongsForSelectedCountry();" >Go go gadget!</button>
+            </div>
+            <div class="right">
+                <button class="add-playlist button icon"><span class="plus"></span>Add as Playlist</button>
+            </div>
          </div>
 
          <div id="player"></div>
-         <input type="button" id="gogo_gadget" value="Click Here" onClick="getSongsForSelectedCountry();" style="" />
     </div>
 
     <script>
@@ -62,16 +66,14 @@
             $('path').css('fill','blue')
             $(this).css('stroke','lime')
             $(this).css('fill','lime')
-            
-            $('#gogo_gadget').trigger('click');
         });
         
     }
     
     function getSongsForSelectedCountry() {
         var country = $('.leaflet-popup-content').text();
-        $('#country_name').innerHTML = country
-        getLastFmTopTrack('mexico');
+        if(country.length > 0)
+            getLastFmTopTrack(country);
     }
     
     </script>
