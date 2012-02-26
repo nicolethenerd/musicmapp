@@ -8,8 +8,10 @@ var player = new views.Player();
 var activeLastFmUriCalls = 0;
 var activeSpotifyCalls = 0;
 
+var pl = null;
 var liveFmTracks = null;
 var spotifyTracks = null;
+
 
 
 function getSongsForSelectedCountry(country) {
@@ -19,6 +21,7 @@ function getSongsForSelectedCountry(country) {
    	
    	liveFmTracks = new Array();
 	spotifyTracks = new Array();
+
 	RequestSpotifyTracksForCountry(country);
     RequestLastFmTracksForCountry(country);
 }
@@ -92,7 +95,7 @@ function RequestLastFmTracksForCountry(countryName){
 	activeLastFmUriCalls++;
 
     var api_key = "3938d8cf503b62fcc4d3c616d2f99b48";
-    var reqUrl = "http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=" + countryName + "&api_key="+api_key;
+    var reqUrl = "http://ws.audioscrobbler.com/2.0/?method=geo.gettoptracks&country=" + countryName + "&limit=20&api_key="+api_key;
     $.ajax({
     url: reqUrl,
     dataType: "xml",
@@ -103,6 +106,9 @@ function RequestLastFmTracksForCountry(countryName){
 				   getSpotifyURI(songName, artistName);
                 });
                 activeLastFmUriCalls--;
+    },
+	error: function(xml){
+      activeLastFmUriCalls--;
     }
  });
 }
@@ -127,8 +133,11 @@ function getSpotifyURI(songName, artistName){
 
 				activeLastFmUriCalls--;
                	RefreshTracks();
-            }
-      });
+            },
+    error: function(xml){
+			activeLastFmUriCalls--;
+		}      
+	});
 }
 
 function RefreshTracks(){
@@ -145,7 +154,6 @@ function RefreshTracks(){
 			console.log(spotifyTracks[i].name)
 		}
 		
-		var pl = new models.Playlist();
 		var allTracks = new Array();
 		var finalTracks = new Array();
 
@@ -155,16 +163,34 @@ function RefreshTracks(){
 			finalTracks[allTracks[i].data.uri] = allTracks[i];
 		}
 		
+		pl = new models.Playlist();
 		for(key in finalTracks){
 			pl.add(finalTracks[key]);
 		}
 		
-		player.track = pl.get(0);
-		player.context = pl;
-		var plView = new views.List(pl);
-		$('#player').empty();
+		$('.loading').hide();
 
-        $('.loading').hide();
-		$('#player').append(plView.node);
+		if(pl.length > 0){
+			player.track = pl.get(0);
+			player.context = pl;
+			var plView = new views.List(pl);
+			$('#player').empty();
+			$('#player').append(plView.node);
+		}
+	}
+}
+
+function CopyViewToNamedPlaylist(){
+	var d = new Date();
+	var countryName = $('.leaflet-popup-content').text();
+	
+	console.log("playlist length: " + pl.length);
+
+	if(countryName.length > 0  && pl.length > 0){
+		var newPlName = countryName + " " + d.getMonth() + "-" + d.getDate() + "-" + d.getFullYear();
+		var savedPl = new models.Playlist(newPlName);
+		for(var i=0; i<pl.length; ++i) {
+			savedPl.add(pl.get(i));
+		}	
 	}
 }
