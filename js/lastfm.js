@@ -8,8 +8,11 @@ function getLastFmTopCountrySongs(countryName){
         console.log("req status: " + req.status);
         if (req.readyState == 4) {
             if (req.status == 200) {
-                console.log("Search complete!");
-                console.log(req.responseText);
+                r = req.responseText;
+                $('track', r).each(function(){
+						// console.log($(this));
+                   console.log($(this).attr("name"));//  + " " + $(this).attr("artist").attr("name"));
+                });
             }
         }
     };
