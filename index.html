@@ -13,8 +13,8 @@
                 src: url('sp://radiomap/Bellerose.ttf') format('truetype');
             }
             
-            html {background-color: #010f18;}
-            body {background-color: #010f18; overflow-x: hidden;}
+            html {background-color: black;}
+            body {background-color: black; overflow-x: hidden;}
             
             #mapdiv {height:300px;}
             #branded_area {height:30px; text-align:center;
@@ -68,7 +68,7 @@
     function getSongsForSelectedCountry() {
         var country = $('.leaflet-popup-content').text();
         $('#country_name').innerHTML = country
-        getLastFmTopTrack('mexico');
+        getLastFmTopCountrySongs('mexico');
     }
     
     </script>
