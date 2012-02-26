@@ -33,6 +33,8 @@ Powered by Leaflet and Last.fm
 
             .left {float:left; width:10em; margin: 10px;} 
             .right {float:right; width:10em;}
+
+            .add-playlist {position:absolute; top: 304px; left:10px;}
         </style>
         
         <script src="sp://radiomap/leaflet/leaflet-src.js"></script>
@@ -50,11 +52,9 @@ Powered by Leaflet and Last.fm
             <div id="mapdiv"></div>
          </div><!-- /wrapper -->
          <script src="sp://radiomap/js/map.js"></script>
-         <div id="buttons">
-            <div class="left">
-                <button class="add-playlist button icon"><span class="plus"></span>Add as Playlist</button>
-            </div>
-         </div>
+         
+         <button class="add-playlist button icon"><span class="plus"></span>Add as Playlist</button>
+            
 
          <div id="player"></div>
     </div>
