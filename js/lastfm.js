@@ -13,3 +13,19 @@ function getLastFmTopCountrySongs(countryName){
     }
  });
 }
+
+/*function getSpotifyURI(songName, artistName){
+  var api_key = "3938d8cf503b62fcc4d3c616d2f99b48";
+    var reqUrl = "http://ws.audioscrobbler.com/2.0/?method=track.getPlaylinks&artist[]=" + artistName +"&track[]=" + songName + "&api_key="+api_key;
+    console.log("Request: " + reqUrl);
+    $.ajax({
+    url: reqUrl,
+    dataType: "xml",
+    success: function(xml){
+               $('spotify', xml).each(function(){
+                   return $(this).text();
+                });
+            }
+      });
+    return "-1";
+}*/
