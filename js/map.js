@@ -18,7 +18,7 @@ geojsonLayer.on("featureparse", function (e) {
 });
 
 $.getJSON(
-        "sp://radiomap/js/world.json",
+        "sp://musicmapp/js/world.json",
         function(geojson) {
         $.each(geojson.features, function(i, feature) {
           geojsonLayer.addGeoJSON(feature);
