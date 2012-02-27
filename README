@@ -6,6 +6,6 @@ Tech Stack:
 - Spotify Apps API
 
 To run:
-1. Check out this project into your Spotify directory (create inside your home directory on a Mac).  
+1. Check out this project into your Spotify directory
 2. Open spotify.  
-3. Type 'spottily:app:musicmapp' in the search bar
+3. Type 'spotify:app:musicmapp' in the search bar
